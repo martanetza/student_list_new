@@ -26,6 +26,16 @@ function makeObject(studentList) {
     newObject.house = item.house;
 
     arrayOfStudents.push(newObject);
-    console.log(arrayOfStudents);
+    // console.log(arrayOfStudents);
   });
+
+  studentList.filter(filterOne);
+  console.log(studentList.filter(filterOne));
+}
+function filterOne(item) {
+  if (item.house == "Slytherin") {
+    return true;
+  } else {
+    return false;
+  }
 }
