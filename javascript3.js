@@ -5,12 +5,16 @@ const studentObject = {
   house: "-student house-"
 };
 const arrayOfStudents = [];
-
+let filter;
 init();
 function init() {
   console.log("init");
 
   getJSON();
+
+  document.querySelectorAll("p").forEach(elm => {
+    elm.addEventListener("click", setFilter);
+  });
 }
 
 function getJSON() {
@@ -26,16 +30,57 @@ function makeObject(studentList) {
     newObject.house = item.house;
 
     arrayOfStudents.push(newObject);
-    // console.log(arrayOfStudents);
   });
 
-  studentList.filter(filterOne);
-  console.log(studentList.filter(filterOne));
+  filterList();
 }
+function filterList() {
+  arrayOfStudents.filter(filterOne);
+  const filterdList = arrayOfStudents.filter(filterOne);
+  // console.log(filterdList);
+
+  display(filterdList);
+}
+
+// function sortList(a,b){
+//   if(a.fullname < b.fullname){
+//     return -1
+//   }else{
+//     ret
+//   }
+
+// }
+
+function setFilter(event) {
+  filter = event.target.innerText;
+  filterList();
+}
+
 function filterOne(item) {
-  if (item.house == "Slytherin") {
+  //
+  if (item.house === filter) {
     return true;
   } else {
     return false;
   }
 }
+
+function display(filterdList) {
+  document.querySelectorAll(".name").forEach(item => {
+    item.remove();
+  });
+  document.querySelectorAll(".place").forEach(item => {
+    item.remove();
+  });
+  filterdList.forEach(item => {
+    let template = document.querySelector("template");
+
+    const copy = template.cloneNode(true).content;
+    copy.querySelector(".name").textContent = item.fullname;
+    copy.querySelector(".place").textContent = item.house;
+    document.querySelector("table").appendChild(copy);
+  });
+
+  console.log(filterdList);
+}
+init();
