@@ -40,16 +40,21 @@ function filterList() {
   // console.log(filterdList);
 
   display(filterdList);
+
+  sortList(filterdList);
 }
 
-// function sortList(a,b){
-//   if(a.fullname < b.fullname){
-//     return -1
-//   }else{
-//     ret
-//   }
+function sortList(filterdList) {
+  filterdList.sort(function(a, b) {
+    if (a.fullname < b.fullname) {
+      return -1;
+    } else {
+      return +1;
+    }
+  });
 
-// }
+  display(filterdList);
+}
 
 function setFilter(event) {
   filter = event.target.innerText;
@@ -58,6 +63,9 @@ function setFilter(event) {
 
 function filterOne(item) {
   //
+  if (!filter) {
+    return true;
+  }
   if (item.house === filter) {
     return true;
   } else {
