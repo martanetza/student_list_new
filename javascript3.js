@@ -45,15 +45,32 @@ function filterList() {
 }
 
 function sortList(filterdList) {
-  filterdList.sort(function(a, b) {
-    if (a.fullname < b.fullname) {
-      return -1;
-    } else {
-      return +1;
+  document.querySelector("#sortBy").addEventListener("change", sortingOption);
+  sortingOption();
+  function sortingOption() {
+    if (document.querySelector("select").value === "name") {
+      filterdList.sort(function(a, b) {
+        if (a.fullname < b.fullname) {
+          return -1;
+        } else {
+          return +1;
+        }
+      });
+      display(filterdList);
     }
-  });
-
-  display(filterdList);
+    if (document.querySelector("select").value === "house") {
+      filterdList.sort(function(a, b) {
+        if (a.house < b.house) {
+          return -1;
+        } else {
+          return +1;
+        }
+      });
+      display(filterdList);
+    } else {
+      display(filterdList);
+    }
+  }
 }
 
 function setFilter(event) {
