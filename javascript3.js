@@ -92,7 +92,7 @@ function setFilter(event) {
 
 function filterOne(item) {
   //
-  if (!filter) {
+  if (!filter || filter === "All") {
     return true;
   }
   if (item.house === filter) {
