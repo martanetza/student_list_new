@@ -103,15 +103,10 @@ function filterOne(item) {
 }
 
 function display(filterdList) {
-  document.querySelectorAll(".name").forEach(item => {
+  document.querySelectorAll(".name, .lastname, .place").forEach(item => {
     item.remove();
   });
-  document.querySelectorAll(".lastname").forEach(item => {
-    item.remove();
-  });
-  document.querySelectorAll(".place").forEach(item => {
-    item.remove();
-  });
+
   filterdList.forEach(item => {
     let template = document.querySelector("template");
 
