@@ -4,7 +4,8 @@
   text-align: left;
   font-size: 20px;
 }
-header {
+header,
+main {
   width: 60vw;
   margin: 40px auto;
 }
@@ -50,4 +51,7 @@ p {
     width: 90vw;
     margin: 40px auto;
   }
+}
+#i_squad {
+  margin-right: 0px;
 }

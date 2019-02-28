@@ -39,26 +39,34 @@
         </select>
       </div>
     </header>
+    <main>
+      <table>
+        <tr>
+          <th>
+            i_squad
+          </th>
+          <th>
+            First name
+          </th>
+          <th>
+            Last name
+          </th>
+          <th>
+            House
+          </th>
+          <th>
+            Delete
+          </th>
+        </tr>
+      </table>
 
-    <table>
-      <tr>
-        <th>
-          First name
-        </th>
-        <th>
-          Last name
-        </th>
-        <th>
-          House
-        </th>
-        <th>
-          Delete
-        </th>
-      </tr>
-    </table>
-
+      <button id="i_squad">add to the inquisitorial squad</button>
+    </main>
     <template>
       <tr class="line">
+        <td class="i_squad">
+          <input type="checkbox" name="i_squad" value=" " />
+        </td>
         <td class="name"></td>
         <td class="lastname"></td>
         <td class="place"></td>

@@ -1,5 +1,7 @@
 "use strict";
 const baseLink = "https://petlatkea.dk/2019/students1991.json";
+const familyLink = "http://petlatkea.dk/2019/hogwarts/families.json";
+
 const studentObject = {
   fullname: "-student name-",
   house: "-student house-",
@@ -7,6 +9,7 @@ const studentObject = {
   lastname: "-student last name-",
   id: "-student index"
 };
+
 const arrayOfStudents = [];
 let filterdList;
 let filter;
@@ -21,11 +24,15 @@ function init() {
 }
 
 function getJSON() {
-  console.log("getJSON");
   fetch(baseLink)
     .then(pro => pro.json())
     .then(makeObject);
+
+  fetch(familyLink)
+    .then(pro => pro.json())
+    .then(checkBlud);
 }
+
 function makeObject(studentList) {
   studentList.forEach(item => {
     const uniqueId = uuidv4();
@@ -129,11 +136,9 @@ function clickRemove(event) {
 }
 
 function display(filterdList) {
-  document
-    .querySelectorAll(".name, .lastname, .place, .expel")
-    .forEach(item => {
-      item.remove();
-    });
+  document.querySelectorAll(".line").forEach(item => {
+    item.remove();
+  });
 
   filterdList.forEach(item => {
     let template = document.querySelector("template");
@@ -143,6 +148,7 @@ function display(filterdList) {
     copy.querySelector(".lastname").textContent = item.lastname;
     copy.querySelector(".place").textContent = item.house;
     copy.querySelector("button").id = item.id;
+    copy.querySelector("input").value = item.lastname;
 
     document.querySelector("table").appendChild(copy);
   });
@@ -155,5 +161,15 @@ function uuidv4() {
     return v.toString(16);
   });
 }
+let halfBlud;
+let pureBlud;
+function checkBlud(blud) {
+  pureBlud = blud.pure;
 
+  function accepted(e) {
+    return arrayOfStudents.find(obj => obj.lastname === e);
+  }
+  let acceptedStudents = accepted("");
+  console.log(acceptedStudents);
+}
 init();
