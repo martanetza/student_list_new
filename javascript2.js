@@ -56,7 +56,7 @@ function showList(items) {
         if (filter === house) {
           const copy = template.cloneNode(true).content;
           copy.querySelector(".name").textContent = e.fullname;
-          copy.querySelector(".lastname").textContent = e.house;
+          copy.querySelector(".place").textContent = e.house;
           document.querySelector("table").appendChild(copy);
         }
       }
