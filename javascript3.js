@@ -166,10 +166,17 @@ let pureBlud;
 function checkBlud(blud) {
   pureBlud = blud.pure;
 
-  function accepted(e) {
-    return arrayOfStudents.find(obj => obj.lastname === e);
-  }
-  let acceptedStudents = accepted("");
-  console.log(acceptedStudents);
+  document.querySelector("i_squad").addEventListener("click", checkBludbByName);
 }
+
+function checkBludbByName(lastName) {
+  function accepted(obj) {
+    if (pureBlud.incldes(lastname)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
+
 init();
