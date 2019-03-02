@@ -18,6 +18,11 @@ let filter;
 function init() {
   getFamily();
   document.querySelector("table").addEventListener("click", clickList);
+  document.querySelector(".tableOfSquad").addEventListener("click", clickList);
+  document.querySelector("#i_squad").addEventListener("click", addToIsquad);
+  document
+    .querySelector("#i_squad_remove")
+    .addEventListener("click", removeFromIsquad);
 
   document.querySelectorAll("p").forEach(elm => {
     elm.addEventListener("click", setFilter);
@@ -68,10 +73,6 @@ function makeObject(studentList) {
     if (halfBlood.includes(item.fullname.slice(lastSpace + 1))) {
       newObject.blood = "half";
     }
-    // if (document.querySelector(".i_squad input").checked) {
-    //   newObject.i_squad = "true";
-    // }
-
     arrayOfStudents.push(newObject);
   });
   console.log(arrayOfStudents);
@@ -108,6 +109,7 @@ function sortList(filterdList) {
         }
       });
       display(filterdList);
+      displaySquad(i_squad);
     }
     if (document.querySelector("select").value === "house") {
       filterdList.sort(function(a, b) {
@@ -118,8 +120,10 @@ function sortList(filterdList) {
         }
       });
       display(filterdList);
+      displaySquad(i_squad);
     } else {
       display(filterdList);
+      displaySquad(i_squad);
     }
   }
 }
@@ -145,21 +149,24 @@ function clickList(event) {
   if (event.target.tagName === "BUTTON") {
     clickRemove(event);
   }
-  if (event.target.tagName === "INPUT") {
-    clickCheck(event);
-  }
 }
 
 function clickRemove(event) {
   function findById(id) {
     return arrayOfStudents.findIndex(obj => obj.id === id);
   }
-
   let toBeRemoved = findById(event.target.id);
   arrayOfStudents.splice(toBeRemoved, 1);
 
-  console.log(toBeRemoved);
+  function findByIdSquad(id) {
+    return i_squad.findIndex(obj => obj.id === id);
+  }
+  let toBeRemovedSquad = findByIdSquad(event.target.id);
+  i_squad.splice(toBeRemovedSquad, 1);
+
+  console.log(i_squad);
   filterList(arrayOfStudents);
+  displaySquad(i_squad);
 }
 
 function display(filterdList) {
@@ -189,37 +196,58 @@ function uuidv4() {
   });
 }
 
-function clickCheck(event) {
-  console.log(document.querySelector(".i_squad input").checked);
-  document.querySelector("#i_squad").addEventListener("click", addToIsquad);
-}
-
 let i_squad = [];
 
 function addToIsquad() {
   let checkBox = document.querySelectorAll(".i_squad input");
   checkBox.forEach((e, i) => {
-    console.log(i);
+    // if (e.checked == false) {
+    //   alert(`Please use checkbox to add students the inquisitorial squad`);
+    // }
     if (
       e.checked == true &&
       arrayOfStudents[i].blood == "pure" &&
       arrayOfStudents[i].i_squad == "false"
     ) {
-      //find the index of en elemnt
-      //push it to a new array
-      //change value of property of i_squad
       let studentIndex = findByName(e.value);
-
       arrayOfStudents[studentIndex].i_squad = "true";
       i_squad.push(arrayOfStudents[studentIndex]);
       e.checked = false;
-
       console.log(i_squad);
       console.log(`${e.value} should be added!`);
+    }
+    if (
+      (e.checked == true && arrayOfStudents[i].blood == "muggol") ||
+      (e.checked == true && arrayOfStudents[i].blood == "half")
+    ) {
+      alert(`${e.value} is not a pure blood wizard and`);
+      e.checked = false;
+    }
+    if (e.checked == true && arrayOfStudents[i].i_squad == "true") {
+      alert(`${e.value} is already a member of the inquisitorial squad`);
+      e.checked = false;
+    }
+  });
+  displaySquad(i_squad);
 
-      // e.onclick = function() {
-      //   e.checked = true;
-      // };
+  console.log(arrayOfStudents[0].i_squad);
+}
+
+function removeFromIsquad() {
+  let checkBox = document.querySelectorAll(".i_squad input");
+  checkBox.forEach((e, i) => {
+    // if (e.checked == false) {
+    //   alert(`Please use checkbox to add students the inquisitorial squad`);
+    // }
+    if (e.checked == true) {
+      let studentIndex = findByName(e.value);
+      let toBeRemovedIS = findByNameIsquad(e.value);
+      arrayOfStudents[studentIndex].i_squad = "false";
+      i_squad.splice(toBeRemovedIS, 1);
+
+      e.checked = false;
+      console.log(i_squad);
+      console.log(`${e.value} should be removed!`);
     }
   });
   displaySquad(i_squad);
@@ -239,8 +267,8 @@ function displaySquad(filterdList) {
     copy.querySelector(".name").textContent = item.firstname;
     copy.querySelector(".lastname").textContent = item.lastname;
     copy.querySelector(".place").textContent = item.house;
-    copy.querySelector("button").id = item.id;
     copy.querySelector("input").value = item.lastname;
+    copy.querySelector("button").remove();
 
     document.querySelector(".tableOfSquad").appendChild(copy);
   });
@@ -248,5 +276,8 @@ function displaySquad(filterdList) {
 
 function findByName(lastname) {
   return arrayOfStudents.findIndex(obj => obj.lastname === lastname);
+}
+function findByNameIsquad(lastname) {
+  return i_squad.findIndex(obj => obj.lastname === lastname);
 }
 init();
