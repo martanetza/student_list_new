@@ -217,10 +217,10 @@ function addToIsquad() {
       console.log(`${e.value} should be added!`);
     }
     if (
-      (e.checked == true && arrayOfStudents[i].blood == "muggol") ||
+      (e.checked == true && arrayOfStudents[i].blood == "muggel") ||
       (e.checked == true && arrayOfStudents[i].blood == "half")
     ) {
-      alert(`${e.value} is not a pure blood wizard and`);
+      alert(`${e.value} is not a pure blood wizard`);
       e.checked = false;
     }
     if (e.checked == true && arrayOfStudents[i].i_squad == "true") {
