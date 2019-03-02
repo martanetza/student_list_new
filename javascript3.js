@@ -8,6 +8,7 @@ const studentObject = {
   firstname: "-student first name-",
   lastname: "-student last name-",
   image: "-image-",
+  imageLogo: "-imageLogo-",
   id: "-student index",
   blood: "blood",
   i_squad: "i_squad"
@@ -69,6 +70,7 @@ function makeObject(studentList) {
     newObject.id = uniqueId;
     newObject.i_squad = "false";
     newObject.blood = "muggel";
+    newObject.imageLogo = "images/" + item.house + ".png";
     newObject.image =
       "images/" +
       newObject.lastname.toLowerCase() +
@@ -88,7 +90,7 @@ function makeObject(studentList) {
 
   const myObject = Object.create(studentObject);
   myObject.fullname = "Marta Netza";
-  myObject.house = "Gruffindor";
+  myObject.house = "Gryffindor";
   myObject.firstname = "Marta";
   myObject.lastname = "Netza";
   myObject.id = uniqueId;
@@ -316,7 +318,9 @@ function showModal() {
 
   arrayOfStudents.forEach(item => {
     if (item.id == event.target.parentElement.dataset.indexNumber) {
-      document.querySelector(".modal img").src = item.image;
+      document.querySelector(".logo img").src = item.imageLogo;
+
+      document.querySelector("section img").src = item.image;
       document.querySelector(".fullName").textContent = item.fullname;
       document.querySelector(".house").textContent = item.house;
       document.querySelector(".bloodStatus").textContent = item.blood;
@@ -325,6 +329,35 @@ function showModal() {
       } else {
         document.querySelector(".squadStatus").textContent = "a member";
       }
+      if (item.house === "Hufflepuff") {
+        document.querySelector(".modal").style.backgroundColor = "#f2c136";
+        document.querySelector(".modal").style.borderColor = "#ca972c";
+        document.querySelector(".logo").style.borderColor = "#ca972c";
+        document.querySelector(".modal").style.color = "#161719";
+      }
+      if (item.house === "Slytherin") {
+        document.querySelector(".modal").style.backgroundColor = "#e2e3e5";
+        document.querySelector(".modal").style.borderColor = "#7e7f83";
+        document.querySelector(".logo").style.borderColor = "#7e7f83";
+        document.querySelector(".modal").style.color = "#15302b";
+      }
+      if (item.house === "Ravenclaw") {
+        document.querySelector(".modal").style.backgroundColor = "#e7edeb5";
+        document.querySelector(".modal").style.borderColor = "#b9b7c5";
+        document.querySelector(".logo").style.borderColor = "#b9b7c5";
+        document.querySelector(".modal").style.color = "#121d3d";
+      }
+      if (item.house === "Gryffindor") {
+        document.querySelector(".modal").style.backgroundColor = "#f7f6d5";
+        document.querySelector(".modal").style.borderColor = "#dcaf3a";
+        document.querySelector(".logo").style.borderColor = "#dcaf3a";
+        document.querySelector(".modal").style.color = "#86172a";
+      }
+
+      //h: background: f2c136 line: ca972c font:161719
+      //s: background:  e2e3e5 line: 7e7f83 font:15302b
+      //r: background: e7edeb line: b9b7c5 font: 121d3d
+      //g: background: f7f6d5 line: dcaf3a font: 86172a
     }
   });
 }
