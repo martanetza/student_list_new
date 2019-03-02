@@ -1,6 +1,6 @@
 "use strict";
 const baseLink = "https://petlatkea.dk/2019/students1991.json";
-const familyLink = "http://petlatkea.dk/2019/hogwarts/families.json";
+const familyLink = "https://petlatkea.dk/2019/hogwarts/families.json";
 
 const studentObject = {
   fullname: "-student name-",
