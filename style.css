@@ -8,6 +8,8 @@ header,
 main {
   width: 60vw;
   margin: 40px auto;
+  position: relative;
+  z-index: 0;
 }
 
 h1 {
@@ -54,4 +56,42 @@ p {
 }
 #i_squad {
   margin-right: 0px;
+}
+
+.modal {
+  position: fixed;
+  display: none;
+  z-index: 1;
+  width: 60vw;
+  height: 60vh;
+  background-color: white;
+  top: 20vh;
+  left: 20vw;
+}
+.show {
+  display: block;
+}
+.close {
+  display: block;
+  margin-right: 0;
+  margin-left: auto;
+}
+li {
+  list-style: none;
+}
+span {
+  font-weight: bolder;
+}
+section {
+  display: flex;
+}
+
+.image img {
+  display: block;
+  margin: auto;
+}
+.image,
+.info {
+  width: 50%;
+  margin: auto;
 }
