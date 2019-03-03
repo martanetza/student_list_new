@@ -111,7 +111,6 @@ function makeObject(studentList) {
 function filterList() {
   filterdList = arrayOfStudents.filter(filterOne);
   // console.log(filterdList);
-
   sortList(filterdList);
 }
 //------------------------------------------------------------sorting---------------------------------------------------
@@ -180,7 +179,6 @@ function clickList(event) {
     clickRemove(event);
   }
   if (event.target.tagName === "TD") {
-    // alert(event.target.parentElement.dataset.indexNumber);
     showModal();
   }
 }
@@ -333,7 +331,7 @@ function autoRemoveFromI_squad() {
       function findById(id) {
         return arrayOfStudents.findIndex(obj => obj.id === id);
       }
-      console.log(oneOut.id);
+      // console.log(oneOut.id);
     }, 19400);
   }
 }
