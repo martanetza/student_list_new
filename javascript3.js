@@ -32,6 +32,8 @@ function init() {
   });
 }
 
+//-----------------------------------------get links and create json---------------------------------------
+
 function getJSON() {
   fetch(baseLink)
     .then(pro => pro.json())
@@ -50,8 +52,13 @@ function checkBlood(family) {
   pureBlood = family.pure;
   getJSON();
 }
+
+// --------------------------------create objects, check family blood--------------------------------------------------
+
 let halfBlood;
 let pureBlood;
+const uniqueId = uuidv4();
+
 function makeObject(studentList) {
   // console.log(familyArr);
   // console.log(halfBlood);
@@ -86,13 +93,13 @@ function makeObject(studentList) {
 
     arrayOfStudents.push(newObject);
   });
-  const uniqueId = uuidv4();
-
+  //-----------------------------------create my object---------------------------------------------------
   const myObject = Object.create(studentObject);
   myObject.fullname = "Marta Netza";
   myObject.house = "Gryffindor";
   myObject.firstname = "Marta";
   myObject.lastname = "Netza";
+  myObject.imageLogo = "images/Gryffindor.png";
   myObject.id = uniqueId;
   myObject.i_squad = "false";
   myObject.blood = "half";
@@ -107,7 +114,7 @@ function filterList() {
 
   sortList(filterdList);
 }
-
+//------------------------------------------------------------sorting---------------------------------------------------
 function sortList(filterdList) {
   document.querySelector("#sortBy").addEventListener("change", sortingOption);
   sortingOption();
@@ -154,6 +161,7 @@ function setFilter(event) {
   filter = event.target.innerText;
   filterList();
 }
+//-----------------------------------filters---------------------------------------------------
 
 function filterOne(item) {
   //
@@ -177,6 +185,7 @@ function clickList(event) {
   }
 }
 
+//-----------------------------------expeling students---------------------------------------------------
 function clickRemove(event) {
   function findById(id) {
     return arrayOfStudents.findIndex(obj => obj.id === id);
@@ -200,6 +209,8 @@ function clickRemove(event) {
   displaySquad(i_squad);
 }
 
+//---------------------------------------display main list---------------------------------------------------
+
 function display(filterdList) {
   document.querySelectorAll(".line").forEach(item => {
     item.remove();
@@ -221,6 +232,7 @@ function display(filterdList) {
   });
 }
 
+//-----------------------------------i squad---------------------------------------------------
 let i_squad = [];
 
 function addToIsquad() {
@@ -281,12 +293,12 @@ function removeFromIsquad() {
   console.log(arrayOfStudents[0].i_squad);
 }
 
-function displaySquad(filterdList) {
+function displaySquad(list) {
   document.querySelectorAll(".tableOfSquad .line").forEach(item => {
     item.remove();
   });
 
-  filterdList.forEach(item => {
+  list.forEach(item => {
     let template = document.querySelector("template");
 
     const copy = template.cloneNode(true).content;
@@ -310,6 +322,22 @@ function findByNameIsquad(lastname) {
   return i_squad.findIndex(obj => obj.lastname === lastname);
 }
 
+function autoRemoveFromI_squad() {
+  if (i_squad.length > 0) {
+    setTimeout(function() {
+      let oneOut = i_squad.pop();
+      let studentIndex = findById(oneOut.id);
+      arrayOfStudents[studentIndex].i_squad = "false";
+
+      displaySquad(i_squad);
+      function findById(id) {
+        return arrayOfStudents.findIndex(obj => obj.id === id);
+      }
+      console.log(oneOut.id);
+    }, 19400);
+  }
+}
+//-------------------------------------------------modal---------------------------------------------------
 function showModal() {
   console.log("test");
   if (event.target.tagName !== "INPUT") {
@@ -368,22 +396,6 @@ document.querySelector(".close").onclick = function() {
   display(filterdList);
   displaySquad(i_squad);
 };
-
-function autoRemoveFromI_squad() {
-  if (i_squad.length > 0) {
-    setTimeout(function() {
-      let oneOut = i_squad.pop();
-      let studentIndex = findById(oneOut.id);
-      arrayOfStudents[studentIndex].i_squad = "false";
-
-      displaySquad(i_squad);
-      function findById(id) {
-        return arrayOfStudents.findIndex(obj => obj.id === id);
-      }
-      console.log(oneOut.id);
-    }, 19400);
-  }
-}
 
 function uuidv4() {
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
