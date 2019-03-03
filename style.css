@@ -4,21 +4,14 @@
   text-align: left;
   font-size: 20px;
 }
-header,
-main {
-  width: 60vw;
-  margin: 40px auto;
-  position: relative;
-  z-index: 0;
-}
 
-h1 {
+.main_header {
   text-align: left;
   text-transform: uppercase;
 }
 
 table {
-  width: 60vw;
+  width: 80vw;
   border-collapse: collapse;
   margin: 50px auto;
   cursor: pointer;
@@ -31,7 +24,7 @@ td {
 }
 
 tr:hover {
-  background-color: #f5f5f5;
+  background-color: white;
 }
 nav {
   display: flex;
@@ -42,18 +35,6 @@ p {
   cursor: pointer;
 }
 
-@media all and (max-width: 991px) {
-  table {
-    width: 90vw;
-    border-collapse: collapse;
-    margin: 50px auto;
-  }
-
-  header {
-    width: 90vw;
-    margin: 40px auto;
-  }
-}
 #i_squad {
   margin-right: 0px;
 }
@@ -73,11 +54,7 @@ p {
 .show {
   display: block;
 }
-.close {
-  display: block;
-  margin-right: 0;
-  margin-left: auto;
-}
+
 li {
   list-style: none;
 }
@@ -115,4 +92,86 @@ section {
   margin: auto;
   display: block;
   width: 60px;
+}
+button {
+  background-color: #e7edeb;
+  border-radius: 50px;
+  border: none;
+  color: black;
+  padding: 5px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.close {
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  border: none;
+  border-radius: 100px;
+  color: black;
+  padding: 0px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 16px;
+  margin: 15px 15px auto auto;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #86172a;
+  color: white;
+}
+
+.close:hover {
+  background-color: #15302b;
+  color: white;
+}
+
+body {
+  background-color: #86172a;
+}
+
+main {
+  padding-top: 50px;
+  background-color: #fcf7f8;
+  width: 90vw;
+  margin: 0px auto;
+  z-index: 0;
+}
+
+header {
+  margin: 50px auto;
+  width: 90%;
+}
+
+@media all and (max-width: 991px) {
+  table {
+    width: 90vw;
+    border-collapse: collapse;
+    margin: 50px auto;
+  }
+
+  header {
+    width: 90vw;
+    margin: 40px auto;
+  }
+}
+
+#i_squad_remove,
+#i_squad {
+  margin-left: 4%;
+}
+
+.i_squad_header {
+  margin-top: 50px;
+  text-align: left;
+  width: 80vw;
+  margin-left: auto;
+  margin-right: auto;
 }

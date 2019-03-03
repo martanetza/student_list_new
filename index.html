@@ -8,38 +8,39 @@
     <title>student list</title>
   </head>
   <body>
-    <header>
-      <H1>Student list</H1>
-      <nav>
-        <p>
-          All
-        </p>
-        <p>
-          Hufflepuff
-        </p>
-        <p>
-          Gryffindor
-        </p>
-        <p>
-          Ravenclaw
-        </p>
-        <p>
-          Slytherin
-        </p>
-      </nav>
-
-      <div id="sorting">
-        <label for="sortBy">Sort by:</label>
-
-        <select id="sortBy">
-          <option value="">--Please choose an option--</option>
-          <option value="firstName">first name </option>
-          <option value="lastName">last name </option>
-          <option value="house">house</option>
-        </select>
-      </div>
-    </header>
     <main>
+      <div class="background">
+      <header>
+        <H1 class="main_header">Student list</H1>
+        <nav>
+          <p>
+            All
+          </p>
+          <p>
+            Hufflepuff
+          </p>
+          <p>
+            Gryffindor
+          </p>
+          <p>
+            Ravenclaw
+          </p>
+          <p>
+            Slytherin
+          </p>
+        </nav>
+
+        <div id="sorting">
+          <label for="sortBy">Sort by:</label>
+
+          <select id="sortBy">
+            <option value="">--Please choose an option--</option>
+            <option value="firstName">first name </option>
+            <option value="lastName">last name </option>
+            <option value="house">house</option>
+          </select>
+        </div>
+      </header>
       <table class="mainTable">
         <tr>
           <th>
@@ -55,14 +56,14 @@
             House
           </th>
           <th>
-            Delete
+            Expel
           </th>
         </tr>
       </table>
 
       <button id="i_squad">add to the inquisitorial squad</button>
 
-      <h1>inquisitorial squad</h1>
+      <h1 class="i_squad_header">inquisitorial squad</h1>
       <table class="tableOfSquad">
         <tr>
           <th>
@@ -81,37 +82,37 @@
       </table>
 
       <button id="i_squad_remove">remove from the inquisitorial squad</button>
+      <div class="modal">
+        <button class="close">x</button>
+        <div class="logo"><img src="" alt="" /></div>
+        <section>
+          <div class="image">
+            <img src="" alt="" />
+          </div>
+          <div class="info">
+            <ul>
+              <li>
+                <span>full name:</span>
+                <div class="fullName"></div>
+              </li>
+              <li>
+                <span>house:</span>
+                <div class="house"></div>
+              </li>
+              <li>
+                <span>blood status:</span>
+                <div class="bloodStatus"></div>
+              </li>
+              <li>
+                <span>inquisitorial squad status:</span>
+                <div class="squadStatus"></div>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </div>
     </main>
-    <div class="modal">
-      <button class="close">x</button>
-      <div class="logo"><img src="" alt="" /></div>
-      <section>
-        <div class="image">
-          <img src="" alt="" />
-        </div>
-        <div class="info">
-          <ul>
-            <li>
-              <span>full name:</span>
-              <div class="fullName"></div>
-            </li>
-            <li>
-              <span>house:</span>
-              <div class="house"></div>
-            </li>
-            <li>
-              <span>blood status:</span>
-              <div class="bloodStatus"></div>
-            </li>
-            <li>
-              <span>inquisitorial squad status:</span>
-              <div class="squadStatus"></div>
-            </li>
-          </ul>
-        </div>
-      </section>
-    </div>
-
+  </div>
     <template>
       <tr class="line">
         <td class="i_squad">

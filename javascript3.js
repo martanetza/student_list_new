@@ -342,7 +342,7 @@ function showModal() {
         document.querySelector(".modal").style.color = "#15302b";
       }
       if (item.house === "Ravenclaw") {
-        document.querySelector(".modal").style.backgroundColor = "#e7edeb5";
+        document.querySelector(".modal").style.backgroundColor = "#e7edeb";
         document.querySelector(".modal").style.borderColor = "#b9b7c5";
         document.querySelector(".logo").style.borderColor = "#b9b7c5";
         document.querySelector(".modal").style.color = "#121d3d";
@@ -368,10 +368,19 @@ document.querySelector(".close").onclick = function() {
 };
 
 function autoRemoveFromI_squad() {
-  setTimeout(function() {
-    i_squad.pop();
-    displaySquad(i_squad);
-  }, 19400);
+  if (i_squad.length > 0) {
+    setTimeout(function() {
+      let oneOut = i_squad.pop();
+      let studentIndex = findById(oneOut.id);
+      arrayOfStudents[studentIndex].i_squad = "false";
+
+      displaySquad(i_squad);
+      function findById(id) {
+        return arrayOfStudents.findIndex(obj => obj.id === id);
+      }
+      console.log(oneOut.id);
+    }, 19400);
+  }
 }
 
 function uuidv4() {
