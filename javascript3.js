@@ -182,8 +182,13 @@ function clickRemove(event) {
     return arrayOfStudents.findIndex(obj => obj.id === id);
   }
   let toBeRemoved = findById(event.target.id);
-  arrayOfStudents.splice(toBeRemoved, 1);
-
+  // arrayOfStudents.splice(toBeRemoved, 1);
+  console.log(toBeRemoved);
+  if (toBeRemoved === 34) {
+    alert("no no no");
+  } else {
+    arrayOfStudents.splice(toBeRemoved, 1);
+  }
   function findByIdSquad(id) {
     return i_squad.findIndex(obj => obj.id === id);
   }
@@ -214,9 +219,6 @@ function display(filterdList) {
 
     document.querySelector("table").appendChild(copy);
   });
-  // document.querySelectorAll(".line").forEach(e => {
-  //   e.addEventListener("click", showModal);
-  // });
 }
 
 let i_squad = [];
